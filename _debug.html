@@ -1,0 +1,508 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#F3EEE1" />
+<title>指尖遇春 · 立春雨水交互科普</title>
+<meta name="description" content="以指为春：融开一片冰，落下一场雨。立春与雨水的二十四节气触摸科普。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- 纸纹与共用地形 -->
+<svg class="defs" aria-hidden="true">
+  <defs>
+    <filter id="inkEdge" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="3" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="softLight" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <radialGradient id="sunGlow">
+      <stop offset="0%" stop-color="#E8CE8E" stop-opacity=".55"/>
+      <stop offset="60%" stop-color="#E8CE8E" stop-opacity=".14"/>
+      <stop offset="100%" stop-color="#E8CE8E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mistFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBF8EF" stop-opacity="0"/>
+      <stop offset="55%" stop-color="#FBF8EF" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#FBF8EF" stop-opacity=".9"/>
+    </linearGradient>
+
+    <!-- 六边雪晶 -->
+    <symbol id="flake" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round">
+        <path d="M50 6 L50 94 M6 50 L94 50 M19 19 L81 81 M81 19 L19 81"/>
+        <path d="M50 20 L38 12 M50 20 L62 12 M50 80 L38 88 M50 80 L62 88
+                 M20 50 L12 38 M20 50 L12 62 M80 50 L88 38 M80 50 L88 62
+                 M28 28 L20 24 M28 28 L24 20 M72 72 L80 76 M72 72 L76 80
+                 M72 28 L76 20 M72 28 L80 24 M28 72 L20 76 M28 72 L24 80"
+              stroke-width="2.4"/>
+      </g>
+    </symbol>
+
+    <!-- 雨滴 -->
+    <symbol id="drop" viewBox="0 0 40 56">
+      <path d="M20 3 C20 3 34 26 34 36 A14 14 0 0 1 6 36 C6 26 20 3 20 3 Z"
+            fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M15 34 A6 7 0 0 0 20 41" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+    </symbol>
+
+    <!-- 线描：梅枝 -->
+    <symbol id="artPlum" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <path d="M34 300 C70 268 74 236 96 210 C118 184 150 176 168 148 C186 120 190 86 208 60"/>
+        <path d="M96 210 C82 196 66 194 52 200"/>
+        <path d="M150 176 C158 158 176 150 194 152"/>
+        <path d="M168 148 C160 128 164 108 176 96"/>
+        <path d="M120 196 C110 176 112 158 122 146"/>
+      </g>
+      <g fill="#D9A79E" opacity=".85">
+        <circle cx="52" cy="199" r="5.5"/><circle cx="56" cy="193" r="4"/>
+        <circle cx="194" cy="151" r="5.5"/><circle cx="199" cy="145" r="4"/>
+        <circle cx="176" cy="95" r="5.5"/><circle cx="181" cy="89" r="4"/>
+        <circle cx="208" cy="58" r="5"/><circle cx="213" cy="52" r="3.6"/>
+        <circle cx="122" cy="145" r="4.6"/><circle cx="126" cy="139" r="3.4"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：春盘（俯视） -->
+    <symbol id="artDish" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <circle cx="120" cy="156" r="72"/>
+        <circle cx="120" cy="156" r="56" opacity=".4" stroke-width=".9"/>
+        <path d="M34 268 C60 258 86 274 112 264 C138 254 164 270 190 260" opacity=".45" stroke-width="1.1"/>
+      </g>
+      <g fill="none" stroke="#4E6E56" stroke-width="1.2" opacity=".9">
+        <path d="M92 130 C100 122 112 122 118 130 C110 138 98 138 92 130 Z"/>
+        <path d="M132 118 C140 112 150 114 154 122 C146 128 136 126 132 118 Z"/>
+        <path d="M136 168 C144 160 156 162 160 170 C152 178 140 176 136 168 Z"/>
+      </g>
+      <g fill="none" stroke="#C9A15C" stroke-width="1.2" opacity=".9">
+        <circle cx="106" cy="176" r="9"/><circle cx="128" cy="144" r="7"/><circle cx="140" cy="188" r="6"/>
+      </g>
+      <g fill="none" stroke="#1E211C" stroke-width="1.2" opacity=".7">
+        <path d="M46 250 L196 224"/><path d="M50 264 L200 238"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：春笋 -->
+    <symbol id="artBamboo" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <path d="M120 84 C104 112 94 156 94 202 C94 236 104 256 120 256 C136 256 146 236 146 202 C146 156 136 112 120 84 Z"/>
+        <path d="M100 138 C108 132 132 132 140 138"/>
+        <path d="M97 172 C108 165 132 165 143 172"/>
+        <path d="M96 204 C108 197 132 197 144 204"/>
+        <path d="M100 234 C110 228 130 228 140 234"/>
+      </g>
+      <g fill="none" stroke="#4E6E56" stroke-width="1.1" opacity=".8">
+        <path d="M120 84 C124 66 136 54 152 50 C150 66 140 78 126 86"/>
+        <path d="M94 214 C82 206 76 194 76 180 C90 184 98 196 98 210"/>
+      </g>
+      <g fill="none" stroke="#1E211C" stroke-width=".9" opacity=".3">
+        <path d="M104 150 L104 168 M136 150 L136 168 M102 186 L102 202 M138 186 L138 202"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：卷册 -->
+    <symbol id="artScroll" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <rect x="52" y="104" width="136" height="104" rx="1"/>
+        <rect x="42" y="92" width="156" height="12" rx="6"/>
+        <rect x="42" y="208" width="156" height="12" rx="6"/>
+        <path d="M70 132 L170 132 M70 150 L146 150 M70 168 L158 168 M70 186 L128 186" stroke-width=".85" opacity=".4"/>
+        <path d="M120 220 L120 258" stroke-width=".9" opacity=".3"/>
+      </g>
+      <g fill="none" stroke="#A63D2A" stroke-width="1.2" opacity=".75">
+        <rect x="148" y="170" width="18" height="18"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：秧苗 -->
+    <symbol id="artSprout" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <path d="M120 260 L120 170"/>
+        <path d="M120 214 C104 210 92 198 90 182"/>
+        <path d="M120 196 C138 192 150 180 152 162"/>
+        <path d="M120 170 C112 156 112 142 120 130"/>
+      </g>
+      <g fill="none" stroke="#4E6E56" stroke-width="1.2" opacity=".85">
+        <path d="M90 182 C86 168 92 154 104 148 C108 162 102 176 90 182 Z"/>
+        <path d="M152 162 C156 148 150 134 138 128 C134 142 140 156 152 162 Z"/>
+      </g>
+      <g fill="none" stroke="#1E211C" stroke-width="1.1" opacity=".6">
+        <path d="M64 268 C80 260 96 274 112 266 C128 258 144 272 160 264 C172 258 182 262 190 266"/>
+        <path d="M64 282 C80 274 96 288 112 280 C128 272 144 286 160 278 C172 272 182 276 190 280"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：绒花 -->
+    <symbol id="artRonghua" viewBox="0 0 240 320">
+      <g fill="none" stroke="#D9A79E" stroke-width="1.2">
+        <g transform="translate(120 146)">
+          <ellipse cx="0" cy="-36" rx="13" ry="26"/>
+          <ellipse cx="0" cy="-36" rx="13" ry="26" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-36" rx="13" ry="26" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-36" rx="13" ry="26" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-36" rx="13" ry="26" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-36" rx="13" ry="26" transform="rotate(300)"/>
+        </g>
+        <circle cx="120" cy="146" r="13"/>
+        <circle cx="120" cy="146" r="5"/>
+      </g>
+      <g fill="none" stroke="#1E211C" stroke-width="1.2" stroke-linecap="round">
+        <path d="M120 188 L120 262"/>
+        <path d="M120 252 C104 246 96 234 96 222 C110 224 118 234 120 252 Z" stroke="#4E6E56" stroke-width="1.1"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：檐雨 -->
+    <symbol id="artRain" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <path d="M32 104 L208 104"/>
+        <path d="M44 72 L196 72" stroke-width="1" opacity=".45"/>
+        <path d="M56 104 a10 10 0 0 1 20 0 M88 104 a10 10 0 0 1 20 0 M120 104 a10 10 0 0 1 20 0 M152 104 a10 10 0 0 1 20 0"/>
+        <path d="M44 104 C44 118 52 126 64 128"/>
+        <path d="M64 130 L62 146 M100 108 L98 132 M136 108 L136 134 M170 108 L168 130"/>
+      </g>
+      <g fill="none" stroke="#4E6E56" stroke-width="1.1" opacity=".6">
+        <path d="M56 240 C72 234 86 244 102 238"/>
+        <path d="M116 254 C132 248 146 258 162 252"/>
+        <path d="M82 272 C98 266 112 276 128 270"/>
+      </g>
+    </symbol>
+
+    <!-- 线描：鸿雁 -->
+    <symbol id="artGoose" viewBox="0 0 240 320">
+      <g fill="none" stroke="#1E211C" stroke-width="1.3" stroke-linecap="round">
+        <path d="M56 150 C74 134 96 134 112 146 C124 136 140 138 150 150"/>
+        <path d="M96 120 C108 108 126 108 138 120"/>
+        <path d="M132 176 C146 162 166 164 178 178"/>
+      </g>
+      <g fill="none" stroke="#4E6E56" stroke-width="1.1" opacity=".7">
+        <path d="M52 236 C84 224 118 240 150 230 C174 222 192 230 200 236"/>
+        <path d="M40 262 C76 250 112 266 148 256 C176 248 196 254 206 260"/>
+      </g>
+      <circle cx="176" cy="96" r="18" fill="none" stroke="#E8CE8E" stroke-width="1.2" opacity=".8"/>
+    </symbol>
+    <!-- 雨丝贴图 -->
+    <pattern id="rainTile" width="84" height="108" patternUnits="userSpaceOnUse" patternTransform="rotate(9)">
+      <line x1="6" y1="4" x2="5" y2="20" stroke="#4E6E56" stroke-width="1" opacity=".55"/>
+      <line x1="30" y1="34" x2="29" y2="52" stroke="#4E6E56" stroke-width="1" opacity=".4"/>
+      <line x1="58" y1="60" x2="57" y2="74" stroke="#4E6E56" stroke-width="1" opacity=".32"/>
+      <line x1="72" y1="16" x2="71" y2="30" stroke="#4E6E56" stroke-width="1" opacity=".3"/>
+      <line x1="16" y1="72" x2="15" y2="88" stroke="#4E6E56" stroke-width="1" opacity=".34"/>
+      <line x1="44" y1="92" x2="43" y2="108" stroke="#4E6E56" stroke-width="1" opacity=".26"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div id="app" class="app">
+
+  <!-- ============ 0 加载 ============ -->
+  <section class="screen is-active" id="s-loading">
+    <div class="loader-wrap">
+      <p class="eyebrow">二十四节气 · 触摸科普</p>
+      <h1 class="loader-title vertical">指尖遇春</h1>
+      <div class="loader-line"><span></span></div>
+      <p class="loader-meta">立春 · 雨水<span class="dot">·</span>2026</p>
+    </div>
+  </section>
+
+  <!-- ============ 1 封面 ============ -->
+  <section class="screen" id="s-cover">
+    <div class="scene scene-cover" aria-hidden="true">
+      <div class="sun"></div>
+      <svg class="mountains" viewBox="0 0 1440 520" preserveAspectRatio="none">
+        <path class="m-far" d="M0 470 L0 372 C150 330 250 388 390 344 C520 304 620 360 760 330 C900 300 1030 350 1160 318 C1280 288 1370 330 1440 306 L1440 520 Z"/>
+        <path class="m-mid" d="M0 500 L0 416 C170 380 300 440 450 404 C600 368 700 424 850 396 C1000 368 1120 420 1260 392 C1340 376 1400 396 1440 384 L1440 520 Z"/>
+        <path class="m-near" d="M0 520 L0 470 C180 448 320 484 480 462 C640 440 780 480 940 458 C1100 436 1270 470 1440 450 L1440 520 Z"/>
+      </svg>
+      <div class="mist"></div>
+      <svg class="plum-branch" viewBox="0 0 240 320"><use href="#artPlum"/></svg>
+    </div>
+    <div class="cover-inner">
+      <p class="eyebrow">立春 · 雨水</p>
+      <h1 class="cover-title vertical">指尖遇春</h1>
+      <p class="cover-line">以指为春，融一片雪，落一场雨。</p>
+      <button class="btn-ink" id="startBtn"><span>开始探索</span></button>
+    </div>
+    <aside class="cover-index" aria-label="卷目">
+      <p class="ci-head">春之卷 · 目次</p>
+      <ol>
+        <li><span>冰封 · 触摸唤醒</span><b>01</b></li>
+        <li><span>春醒 · 冬去春来</span><b>02</b></li>
+        <li><span>择节气 · 立春 / 雨水</span><b>03</b></li>
+        <li><span>立春 · 六雪解语</span><b>04</b></li>
+        <li><span>雨水 · 六雨听春</span><b>05</b></li>
+        <li><span>分享 · 生成海报</span><b>06</b></li>
+      </ol>
+    </aside>
+    <div class="cover-foot">
+      <span>二十四节气 · 春之卷</span>
+      <span class="num">立春 02.04 —— 雨水 02.19</span>
+    </div>
+  </section>
+
+  <!-- ============ 2 冰封 · 触摸唤醒 ============ -->
+  <section class="screen" id="s-awaken">
+    <div class="scene scene-frozen" aria-hidden="true">
+      <div class="frozen-word vertical">春</div>
+      <svg class="mountains" viewBox="0 0 1440 520" preserveAspectRatio="none">
+        <path class="m-far" d="M0 470 L0 372 C150 330 250 388 390 344 C520 304 620 360 760 330 C900 300 1030 350 1160 318 C1280 288 1370 330 1440 306 L1440 520 Z"/>
+        <path class="m-mid" d="M0 500 L0 416 C170 380 300 440 450 404 C600 368 700 424 850 396 C1000 368 1120 420 1260 392 C1340 376 1400 396 1440 384 L1440 520 Z"/>
+      </svg>
+    </div>
+    <canvas id="frost" class="frost"></canvas>
+    <div class="awaken-ui">
+      <p class="awaken-top">春之卷 · 冰封</p>
+      <div class="awaken-hint">
+        <svg class="swipe-ico" viewBox="0 0 64 24" aria-hidden="true">
+          <path d="M6 12h40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M40 6l7 6-7 6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M58 6l-7 6 7 6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>按住并左右滑动 · 融开这片冰</span>
+      </div>
+    </div>
+    <div class="awaken-foot">
+      <span>立春 · 雨水</span>
+      <span class="awaken-progress"><b id="icePct">0</b><i>%</i> 已融</span>
+    </div>
+  </section>
+
+  <!-- ============ 3 春醒 ============ -->
+  <section class="screen" id="s-spring">
+    <div class="scene">
+      <div class="spring-glow"></div>
+      <svg class="mountains" viewBox="0 0 1440 520" preserveAspectRatio="none">
+        <path class="m-far" d="M0 470 L0 372 C150 330 250 388 390 344 C520 304 620 360 760 330 C900 300 1030 350 1160 318 C1280 288 1370 330 1440 306 L1440 520 Z"/>
+        <path class="m-mid" d="M0 500 L0 416 C170 380 300 440 450 404 C600 368 700 424 850 396 C1000 368 1120 420 1260 392 C1340 376 1400 396 1440 384 L1440 520 Z"/>
+      </svg>
+      <div class="mist"></div>
+    </div>
+    <div class="spring-inner">
+      <h2 class="spring-title">
+        <span class="v">冬</span><span class="v">去</span><span class="v">春</span><span class="v">来</span>
+      </h2>
+      <p class="spring-sub">春回大地<span class="sep">·</span>万物复苏</p>
+      <div class="seal seal-lg" aria-hidden="true"><span>立春</span></div>
+    </div>
+    <button class="spring-next" id="springNext">向下<span class="rule-sm"></span>择一节气</button>
+  </section>
+
+  <!-- ============ 4 屏风选择 ============ -->
+  <section class="screen" id="s-choice">
+    <div class="scene scene-plain"></div>
+    <header class="choice-head">
+      <p class="eyebrow">春之卷 · 二候</p>
+      <h2 class="choice-title">择一节 · 入春</h2>
+    </header>
+    <div class="screens" role="group" aria-label="选择节气">
+      <button class="screen-panel" id="pickLichun" data-term="lichun">
+        
+        <span class="panel-frame">
+          <svg class="panel-art" viewBox="0 0 240 320" aria-hidden="true"><use href="#artPlum"/></svg>
+          <span class="panel-eyebrow">SPRING BEGINS</span>
+          <span class="panel-title vertical">立春</span>
+          <span class="panel-date">二月四日<span class="sep">·</span>太阳黄经 315°</span>
+          <span class="panel-three">东风解冻<span class="sep">·</span>蛰虫始振<span class="sep">·</span>鱼陟负冰</span>
+          <span class="panel-enter">入<span class="arrow-line"></span></span>
+        </span>
+      </button>
+      <div class="panel-gap" aria-hidden="true"><span class="gap-word vertical">雪尽雨来</span></div>
+      <button class="screen-panel is-locked" id="pickYushui" data-term="yushui" disabled>
+        
+        <span class="panel-frame">
+          <svg class="panel-art" viewBox="0 0 240 320" aria-hidden="true"><use href="#artGoose"/></svg>
+          <span class="panel-eyebrow">RAIN WATER</span>
+          <span class="panel-title vertical">雨水</span>
+          <span class="panel-date">二月十九日<span class="sep">·</span>太阳黄经 330°</span>
+          <span class="panel-lock">
+            <svg viewBox="0 0 24 24" class="lock-ico" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1.5"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></svg>
+            集齐六雪<span class="sep">·</span>解锁
+          </span>
+        </span>
+      </button>
+    </div>
+    <button class="back-link" data-back="cover">归 · 封面</button>
+  </section>
+
+  <!-- ============ 5 立春 · 六雪 ============ -->
+  <section class="screen" id="s-lichun" data-term="lichun">
+    <div class="scene scene-lichun">
+      <div class="sun"></div>
+      <svg class="mountains" viewBox="0 0 1440 520" preserveAspectRatio="none">
+        <path class="m-far" d="M0 470 L0 372 C150 330 250 388 390 344 C520 304 620 360 760 330 C900 300 1030 350 1160 318 C1280 288 1370 330 1440 306 L1440 520 Z"/>
+        <path class="m-mid" d="M0 500 L0 416 C170 380 300 440 450 404 C600 368 700 424 850 396 C1000 368 1120 420 1260 392 C1340 376 1400 396 1440 384 L1440 520 Z"/>
+        <path class="m-near" d="M0 520 L0 470 C180 448 320 484 480 462 C640 440 780 480 940 458 C1100 436 1270 470 1440 450 L1440 520 Z"/>
+      </svg>
+      <div class="mist"></div>
+      <svg class="plum-branch branch-bl" viewBox="0 0 240 320"><use href="#artPlum"/></svg>
+    </div>
+
+    <header class="term-head">
+      <div class="term-title-block">
+        <h2 class="term-title vertical">立春</h2>
+        <div class="term-meta">
+          <p class="term-date">二月四日<span class="sep">·</span>太阳黄经 315°</p>
+          <p class="term-quote vertical">立，始建也。春气始而建立也。</p>
+          <div class="seal"><span>立春</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="journal" id="lichunField" aria-label="六处可点的雪"></div>
+
+    <div class="hud">
+      <div class="hud-progress">
+        <p class="hud-count"><span class="num" id="lcCount">〇</span><i>/</i><span class="num">陆</span></p>
+        <div class="hud-dots" id="lcDots"></div>
+      </div>
+      <p class="hud-hint" id="lcHint">点一片雪 · 解一段春</p>
+    </div>
+
+    <nav class="dock">
+      <div class="dock-links">
+        <button class="dock-link is-active" data-back="cover">立春</button>
+        <button class="dock-link" id="dockYushui" disabled>雨水</button>
+        <button class="dock-link" data-back="poster" id="dockPoster" disabled>海报</button>
+      </div>
+      <button class="dock-cta" id="lcContinue" disabled>继续 · 雨水<span class="sep">·</span><span class="dock-cond" id="lcCond">集齐六雪解锁</span></button>
+    </nav>
+  </section>
+
+  <!-- ============ 6 雨水 · 六滴 ============ -->
+  <section class="screen" id="s-yushui" data-term="yushui">
+    <div class="scene scene-yushui">
+      <div class="sun sun-yushui"></div>
+      <svg class="rain-veil" aria-hidden="true">
+        <rect width="100%" height="100%" fill="url(#rainTile)"/>
+      </svg>
+      <svg class="mountains" viewBox="0 0 1440 520" preserveAspectRatio="none">
+        <path class="m-far" d="M0 470 L0 386 C160 348 270 402 410 362 C540 324 640 378 780 350 C920 322 1046 368 1176 338 C1290 310 1374 348 1440 326 L1440 520 Z"/>
+        <path class="m-mid" d="M0 500 L0 430 C180 396 310 452 460 418 C610 384 710 438 860 412 C1010 386 1130 434 1270 408 C1350 394 1404 410 1440 400 L1440 520 Z"/>
+      </svg>
+      <div class="water"></div>
+      <svg class="ripples" viewBox="0 0 600 200" aria-hidden="true">
+        <g fill="none" stroke="#2F4C3E" stroke-width=".8">
+          <ellipse cx="170" cy="118" rx="44" ry="9" opacity=".3"/>
+          <ellipse cx="170" cy="118" rx="76" ry="16" opacity=".22"/>
+          <ellipse cx="170" cy="118" rx="116" ry="25" opacity=".14"/>
+          <ellipse cx="408" cy="86" rx="32" ry="7" opacity=".24"/>
+          <ellipse cx="408" cy="86" rx="62" ry="14" opacity=".16"/>
+        </g>
+      </svg>
+      <div class="mist"></div>
+
+    </div>
+
+    <header class="term-head">
+      <div class="term-title-block">
+        <h2 class="term-title vertical">雨水</h2>
+        <div class="term-meta">
+          <p class="term-date">二月十九日<span class="sep">·</span>太阳黄经 330°</p>
+          <p class="term-quote vertical">冰雪皆散而为水，化而为雨。</p>
+          <div class="seal"><span>雨水</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="journal" id="yushuiField" aria-label="六处可点的雨"></div>
+
+    <div class="hud">
+      <div class="hud-progress">
+        <p class="hud-count"><span class="num" id="ysCount">〇</span><i>/</i><span class="num">陆</span></p>
+        <div class="hud-dots" id="ysDots"></div>
+      </div>
+      <p class="hud-hint" id="ysHint">点一滴雨 · 听一段春</p>
+    </div>
+
+    <nav class="dock">
+      <div class="dock-links">
+        <button class="dock-link" data-back="lichun">立春</button>
+        <button class="dock-link is-active" data-back="lichun">雨水</button>
+        <button class="dock-link" data-back="poster" id="dockPoster2">海报</button>
+      </div>
+      <button class="dock-cta" id="ysContinue" disabled>继续 · 生成海报<span class="sep">·</span><span class="dock-cond" id="ysCond">集齐六雨解锁</span></button>
+    </nav>
+  </section>
+
+  <!-- ============ 7 分享海报 ============ -->
+  <section class="screen" id="s-poster">
+    <div class="scene scene-plain"></div>
+    <div class="poster-stage">
+      <p class="eyebrow">春之卷 · 已成</p>
+      <div class="poster-frame">
+        <canvas id="posterCanvas" width="675" height="900" aria-label="指尖遇春分享海报"></canvas>
+      </div>
+      <div class="poster-actions">
+        <button class="btn-ink btn-sm" id="savePoster"><span>保存海报</span></button>
+        <button class="btn-ghost" id="toJingzhe">下回 · 惊蛰</button>
+        <button class="btn-ghost" id="replayBtn">再逛一次</button>
+      </div>
+    </div>
+    <button class="back-link" data-back="lichun">归 · 立春</button>
+  </section>
+
+  <!-- ============ 8 惊蛰预告 ============ -->
+  <section class="screen" id="s-jingzhe">
+    <div class="night-scene">
+      <svg class="thunder" viewBox="0 0 600 400" aria-hidden="true">
+        <path d="M120 20 L232 148 L188 156 L300 268 L252 276 L372 392"/>
+      </svg>
+      <div class="night-mist"></div>
+    </div>
+    <div class="night-inner">
+      <h2 class="night-title vertical">惊蛰 · 未至</h2>
+      <p class="night-sub">三月五日<span class="sep">·</span>万物出乎震</p>
+      <p class="night-tip">下回 · 见</p>
+    </div>
+    <button class="night-back" id="nightBack">返回 · 指尖遇春<span class="rule-sm"></span></button>
+    <div class="seal seal-night" aria-hidden="true"><span>春</span></div>
+  </section>
+
+</div>
+
+<!-- ============ 知识弹窗 ============ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal-veil" data-close="veil"></div>
+  <article class="modal-card" id="modalCard">
+    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+    <div class="modal-art">
+      <div class="modal-figure" id="modalArt" aria-hidden="true"></div>
+      <p class="modal-caption" id="modalCaption">一物 · 一景</p>
+    </div>
+    <div class="modal-body">
+      <p class="modal-chapter" id="modalChapter">物候 · 三候</p>
+      <h2 class="modal-title" id="modalTitle">东风解冻</h2>
+      <div class="modal-text" id="modalText"></div>
+      <p class="modal-quote" id="modalQuote"></p>
+      <div class="modal-actions">
+        <button class="link-btn" id="copyKnow">复制文本</button>
+        <button class="link-btn link-btn-next" id="modalNext">下一片雪<span class="arrow-mini"></span></button>
+        <button class="link-btn" id="modalDone">已阅 · 收起</button>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+<script>
+setTimeout(function(){
+  var d=document.createElement('pre');
+  d.style.cssText='position:fixed;left:0;top:0;z-index:9999;background:#fff;color:#000;font:14px monospace;padding:6px';
+  d.textContent='innerW='+window.innerWidth+' innerH='+window.innerHeight+' vvW='+window.visualViewport.width+' docW='+document.documentElement.clientWidth+' dpr='+devicePixelRatio;
+  document.body.appendChild(d);
+},700);
+</script>
+</body>
+</html>
+
